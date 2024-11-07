@@ -6,10 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Post-It Share</title>
     <link rel="stylesheet" href="/style.css">
+    <script src="https://unpkg.com/htmx.org@2.0.3"></script>
 </head>
 <body>
-    <div class="sticky-note">
-        <div class="content">Nota compartilhada</div>
+    <div 
+        class="sticky-note" 
+        hx-trigger="load"
+        hx-target="#content">
+
+        <div id="content" class="content"></div>
     </div>
+
+    <script>
+        const noteId = location.pathname.split("/").pop();
+        document.querySelector(".sticky-note").setAttribute("hx-get", `/share/${noteId}`);
+    </script>
 </body> 
 </html>
