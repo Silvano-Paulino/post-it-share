@@ -19,7 +19,7 @@ const getNote = (id) => new Promise((resolve, reject) =>
     db.get(`SELECT * FROM notes WHERE id = ?`, [id], (err, row) => err ? reject(err) : resolve(row))
 );
 
-const markNoteAdOpened = (id) => new Promise((resolve, reject) => 
+const markNoteAsOpened = (id) => new Promise((resolve, reject) => 
     db.run(`UPDATE notes SET opened_at = datetime('now', 'localtime') WHERE id = ?`, [id], (err) => err ? reject(err) : resolve())
 );
 
@@ -34,6 +34,6 @@ const deleteExpiredNotes = () => new Promise((resolve, reject) =>
 module.exports = {
     saveNote,
     getNote,
-    markNoteAdOpened,
+    markNoteAsOpened,
     deleteExpiredNotes
 }

@@ -1,5 +1,5 @@
 const express = require("express");
-const {saveNote} = require("./db");
+const {saveNote, deleteExpiredNotes, getNote, markNoteAsOpened} = require("./db");
 const crypto = require("crypto");
 const app =  express();
 
@@ -31,6 +31,23 @@ app.post("/notes", async (req, res) => {
             <span>${req.headers.origin}/note/${id}</span>
         </p>
     `);
+});
+
+app.get("/share/:id", async (req, res) => {
+    await deleteExpiredNotes();
+
+    const {id} = req.params;
+    const note = await getNote(id);
+
+    if (!note) {
+        res.send(`<span class='error'>Esta mensagem não existe mais.</span>`)
+    }
+
+    if (!note.opened_at) {
+        await markNoteAsOpened(id)
+    }
+
+    res.send(note.content);
 });
 
 const PORT = 3000;
