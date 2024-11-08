@@ -5,7 +5,7 @@ An good way to share personal message with yours friends using post-it. Enjoy th
 
 ## Project Detail
 - Title:  `Post-It Share`
-- Link: <a href="https://post-it-share-ff8b.onrender.com/" target="_blank">Visit my website</a>
+- Link: [https://post-it-share-ff8b.onrender.com](https://post-it-share-ff8b.onrender.com/)
 
 
 
